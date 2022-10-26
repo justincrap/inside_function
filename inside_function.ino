@@ -1,4 +1,4 @@
-const unsigned char epd_bitmap_heartbeat [] PROGMEM = {
+const unsigned char epd_bitmap_heartbeat [] PROGMEM = {                                           //print heartbeat image
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -65,23 +65,28 @@ const unsigned char epd_bitmap_heartbeat [] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
 };
 
+
+
 #define USE_ARDUINO_INTERRUPTS true
 #include <PulseSensorPlayground.h>
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
 
-#define Trigpin 6
+#include <SoftwareSerial.h>
+#include <WiFiEsp.h>    //setup wifi 
+#include <ThingSpeak.h> //setup thingspeak
+
+#define SCREEN_WIDTH 128        //define oled size
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+
+#define Trigpin 6               //setup ultrasonic sensor
 #define Echopin 5
 #define low_led 9
 #define high_led 10
-#define OLED_RESET -1
-#include <SoftwareSerial.h>
-#include <WiFiEsp.h>
-#include <ThingSpeak.h>
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);   //setup oled
 
 void pulsesensor();
 void ultrasonic();
@@ -90,27 +95,27 @@ void showimage();
 
 int status = WL_IDLE_STATUS;
 WiFiEspClient client;
-char ssid[] = "EE3070_P1615_1";  //your network SSID (name)
-char pass[] = "EE3070P1615";  //your network password
-float distance;
+char ssid[] = "EE3070_P1615_1";   //your network SSID (name)
+char pass[] = "EE3070P1615";      //your network password
+float distance;                   //for ultrasonic sensor
 int duration;
 
-const int PulseWire = A0;
+const int PulseWire = A0;         //pulse sensor pin
 const int LED13 = 13;
 int Threshold = 550;
 
-int button1 = 52;
+int button1 = 52;                 //setup button
 int button2 = 53;
 int cnt = 0;
 
-int blue_light_pin = 38;
+int blue_light_pin = 38;        //setup led for body testing
 int green_light_pin = 40;
 int red_light_pin = 42;
 
 
 int randomNum = 10;
 
-long total_time[4];
+long total_time[4];           //store reaction time
 long time1, time2;
 
 unsigned long PrivateChannelNumber = 1886454;
@@ -139,7 +144,7 @@ void setup() {
   pulseSensor.blinkOnPulse(LED13);
   pulseSensor.setThreshold(Threshold);
 
-  if (!pulseSensor.begin()) {
+  if (!pulseSensor.begin()) {                     //pulsesensor test availbility
     Serial.println("pulsesensor not working.");  //This prints one time at Arduino power - up,  or on Arduino reset.
   }
 
@@ -151,7 +156,7 @@ void setup() {
       Serial.print(".");
       delay(5000);
     }
-    Serial.println("nConnected");
+    Serial.println("Connected");
   }
   printWifiData();
   ThingSpeak.begin(client);
@@ -182,15 +187,6 @@ void loop() {
   }
 
   delay(100);
-
-  /*display
-    display.setCursor(10, 10);
-    display.setTextSize(4);
-    display.setTextColor(SSD1306_WHITE);
-    display.print(distance);
-    display.display();*/
-
-
 
 }
 
@@ -361,7 +357,7 @@ void displaymenu(int a) {
       display.setCursor(0, 0);
       display.drawBitmap(0, 0, epd_bitmap_heartbeat, 128, 64, WHITE);
       display.display();
-      //showimage(epd_bitmap_heartbeat);
+      showimage(epd_bitmap_heartbeat);
       break;
   }
   return ;
