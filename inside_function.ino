@@ -78,7 +78,7 @@ const unsigned char epd_bitmap_heartbeat [] PROGMEM = {                         
 #include <ThingSpeak.h> //setup thingspeak
 
 #include <Wire.h>
-#include <Adafruit_MLX90614.h>
+#include <Adafruit_MLX90614.h>    //gas sensor
 
 #define SCREEN_WIDTH 128        //define oled size
 #define SCREEN_HEIGHT 64
