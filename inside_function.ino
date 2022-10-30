@@ -77,6 +77,9 @@ const unsigned char epd_bitmap_heartbeat [] PROGMEM = {                         
 #include <WiFiEsp.h>    //setup wifi 
 #include <ThingSpeak.h> //setup thingspeak
 
+#include <Wire.h>
+#include <Adafruit_MLX90614.h>
+
 #define SCREEN_WIDTH 128        //define oled size
 #define SCREEN_HEIGHT 64
 #define OLED_RESET -1
@@ -87,16 +90,23 @@ const unsigned char epd_bitmap_heartbeat [] PROGMEM = {                         
 #define high_led 10
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);   //setup oled
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 void pulsesensor();
 void ultrasonic();
-void showimage();
+void blood_glucose();
+void IR_temp();
+//void showimage();
 
 
 int status = WL_IDLE_STATUS;
 WiFiEspClient client;
 char ssid[] = "EE3070_P1615_1";   //your network SSID (name)
 char pass[] = "EE3070P1615";      //your network password
+
+//char ssid[] = "candy";
+//char pass[] = "oscar200541";
+
 float distance;                   //for ultrasonic sensor
 int duration;
 
@@ -196,7 +206,8 @@ void loop() {
   display.setCursor(0,0);
   display.drawBitmap(0, 0, image1, 128, 64, WHITE);
   display.display();
-  }*/
+  }
+  */
 
 long test_reaction() {
   // put your main code here, to run repeatedly:
@@ -357,7 +368,7 @@ void displaymenu(int a) {
       display.setCursor(0, 0);
       display.drawBitmap(0, 0, epd_bitmap_heartbeat, 128, 64, WHITE);
       display.display();
-      showimage(epd_bitmap_heartbeat);
+      //showimage(epd_bitmap_heartbeat);
       break;
   }
   return ;
@@ -373,4 +384,41 @@ void printWifiData() {
     Serial.println(" IP FALL !!!");
   }
   Serial.println();
+}
+
+
+void blood_glucose() {
+  float gas_sensor_value = analogRead(A7);
+  /*
+  float logoutput = log10(gas_sensor_value / 10000);
+  float AcetoneConc = pow(logoutput * -2.6 + 2.7, 10);
+  Serial.print("Sensor Reading: ");
+  Serial.println(AcetoneConc);
+
+  float BGL = (91.38 * AcetoneConc + 6.3743);
+  Serial.print("BGL: ");
+  Serial.print(BGL);
+  Serial.println("mg/dl");
+  delay(250);*/
+
+
+  //Serial.println("");
+
+
+  float Volt = gas_sensor_value * 5.0 / 1024.0;
+  Serial.print("Sensor Reading: ");
+  Serial.print(Volt);
+  Serial.println("V.");
+
+  float BGL = (158.12 * Volt) - 519.35;
+  Serial.print("BGL: ");
+  Serial.print(BGL);
+  Serial.println("mg/dl");
+  delay(250);
+}
+
+void IR_temp(){
+  Serial.print("Temp in C: ");
+  Serial.println(mlx.readObjectTempC());
+  delay(250);
 }
