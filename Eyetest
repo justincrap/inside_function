@@ -1,0 +1,125 @@
+#include <Adafruit_SSD1306.h>
+#include <splash.h>
+
+#include <Adafruit_GFX.h>
+#include <Adafruit_GrayOLED.h>
+#include <Adafruit_SPITFT.h>
+#include <Adafruit_SPITFT_Macros.h>
+#include <gfxfont.h>
+
+void setup() {
+  // put your setup code here, to run once:
+  // setup, button pin and OLED
+
+}
+
+int eyepoint =0;
+
+void buttonWait(int buttonPin1, int buttonPin2){
+  int buttonState1 = 0;
+  int buttonState2 = 0;
+  while(1){
+    buttonState1 = digitalRead(buttonPin1);
+    buttonState2 = digitalRead(buttonPin2);
+    if (buttonState1 == HIGH) {
+      eyepoint = eyepoint + 1;
+      return;
+    }
+    else if (buttonState2 == LOW){
+      return;
+  }
+}}
+
+void loop() {
+
+eyepoint=0;
+display.clearDisplay();
+display.setTextSize(2);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+display.print(Welcome to the eye test.);
+display.print(The test is initalizing, please wait...);
+delay(3000);
+
+//tut for Y/N button, standing length
+
+
+  display.clearDisplay(); //#1
+ display.setTextSize(7);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(F);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+
+delay(1000);
+  display.clearDisplay();
+ display.setTextSize(6);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(F P);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+
+delay(1000);
+
+  display.clearDisplay();
+ display.setTextSize(5);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(T O Z);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+
+delay(1000);
+
+  display.clearDisplay();  //#4
+ display.setTextSize(4);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(L P E D);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+
+delay(1000);
+
+  display.clearDisplay();
+ display.setTextSize(3);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(P E C F D);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+  
+delay(1000);
+
+  display.clearDisplay();
+ display.setTextSize(2);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(E D F C Z P);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+  
+  delay(1000);
+
+  display.clearDisplay(); //#7
+ display.setTextSize(1);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+  display.print(F E L O P Z D);
+  display.display();
+  buttonWait(2,3); // wait for button press on pin 2
+  
+delay(1000);
+
+ display.clearDisplay();
+ display.setTextSize(2);
+  display.setCursor(0,0);
+  display.setTextColor(SSD1306_WHITE);
+display.print(F("Your level of eyes is "));
+display.print(eyepoint);
+display.print(This is the end of eye test.); 
+
+
+}
