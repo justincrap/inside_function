@@ -980,6 +980,7 @@ void blood_glucose() {
 }
 
 void IR_temp() {
+  while (digitalRead(button1) == LOW) {
   Serial.println("im in loop");
   //mlx.AddrSet(0x5A);
   Serial.print("Ambient = ");
@@ -988,7 +989,7 @@ void IR_temp() {
   Serial.println(mlx.readObjectTempC());
   delay(250);
   return;
-}
+}}
 
 void buttonWait(int buttonPin1, int buttonPin2) {
   int buttonState1 = 0;
