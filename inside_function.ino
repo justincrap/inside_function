@@ -568,15 +568,6 @@ void loop() {
   delay(100);
 }
 
-/*void showimage(const unsigned char image1){
-
-  display.clearDisplay();
-  display.setCursor(0,0);
-  display.drawBitmap(0, 0, image1, 128, 64, WHITE);
-  display.display();
-  }
-*/
-
 long test_reaction() {
   // put your main code here, to run repeatedly:
   buttonWait(button1, button2);
