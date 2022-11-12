@@ -4,7 +4,7 @@
 #include <WiFiEspUdp.h>
 
 //TODO: IR SpO2 sensor, +photo, memorygame,website
-const unsigned char epd_bitmap_heartbeat[] PROGMEM = { // print heartbeat image
+const unsigned char epd_bitmap_heartbeat[] PROGMEM = {  // print heartbeat image
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -72,7 +72,7 @@ const unsigned char epd_bitmap_heartbeat[] PROGMEM = { // print heartbeat image
 };
 
 // 'chess_bmp', 128x64px
-const unsigned char epd_bitmap_chess_bmp [] PROGMEM = {
+const unsigned char epd_bitmap_chess_bmp[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xfc, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -140,7 +140,7 @@ const unsigned char epd_bitmap_chess_bmp [] PROGMEM = {
 };
 
 // 'BLOOD O2', 59x75px
-const unsigned char epd_bitmap_BLOOD_O2 [] PROGMEM = {
+const unsigned char epd_bitmap_BLOOD_O2[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xf9, 0xff, 0xff, 0xff, 0xe0,
   0xff, 0xff, 0xff, 0xf0, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xf0, 0xff, 0xff, 0xff, 0xe0,
@@ -182,7 +182,7 @@ const unsigned char epd_bitmap_BLOOD_O2 [] PROGMEM = {
 };
 
 // 'eye54x38', 54x38px
-const unsigned char epd_bitmap_eye54x38 [] PROGMEM = {
+const unsigned char epd_bitmap_eye54x38[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfc, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -203,7 +203,7 @@ const unsigned char epd_bitmap_eye54x38 [] PROGMEM = {
 };
 
 // 'pulse', 59x49px
-const unsigned char epd_bitmap_pulse [] PROGMEM = {
+const unsigned char epd_bitmap_pulse[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0,
@@ -232,7 +232,7 @@ const unsigned char epd_bitmap_pulse [] PROGMEM = {
 };
 
 // 'bloodglucose', 59x64px
-const unsigned char epd_bitmap_bloodglucose [] PROGMEM = {
+const unsigned char epd_bitmap_bloodglucose[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0,
   0xff, 0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xfc, 0x7f, 0xff, 0xff, 0xe0,
@@ -268,7 +268,7 @@ const unsigned char epd_bitmap_bloodglucose [] PROGMEM = {
 };
 
 // 'wifi error', 128x64px
-const unsigned char epd_bitmap_wifi_error [] PROGMEM = {
+const unsigned char epd_bitmap_wifi_error[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -341,52 +341,54 @@ const unsigned char epd_bitmap_wifi_error [] PROGMEM = {
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-#include <MAX3010x.h> //SPO2
+#include <MAX3010x.h>  //SPO2
 #include "filters.h"
 
 #include <SoftwareSerial.h>
-#include <WiFiEsp.h>    //setup wifi
-#include <ThingSpeak.h> //setup thingspeak
+#include <WiFiEsp.h>     //setup wifi
+#include <ThingSpeak.h>  //setup thingspeak
 
 #include <Wire.h>
-#include <Adafruit_MLX90614.h> //gas sensor
+#include <Adafruit_MLX90614.h>  //gas sensor
 
-#define SCREEN_WIDTH 128 // define oled size
+#define SCREEN_WIDTH 128  // define oled size
 #define SCREEN_HEIGHT 64
 #define OLED_RESET -1
 
-#define Trigpin 6 // setup ultrasonic sensor
+#define Trigpin 6  // setup ultrasonic sensor
 #define Echopin 5
 #define low_led 9
 #define high_led 10
 
 #define voltageCheckPin A4
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); // setup oled
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);  // setup oled
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
+void spo2();
 void pulsesensor();
-void ultrasonic();
+//void ultrasonic();
 void blood_glucose();
-void IR_temp();
+//void IR_temp();
 void buttonWait();
 void eyetest();
-void spo2();
-// void showimage();
 
 int status = WL_IDLE_STATUS;
 WiFiEspClient client;
-char ssid[] = "EE3070_P1615_1"; // your network SSID (name)
-char pass[] = "EE3070P1615";    // your network password
+//char ssid[] = "EE3070_P1615_1"; // your network SSID (name)
+//char pass[] = "EE3070P1615";    // your network password
 
-float distance; // for ultrasonic sensor
+char ssid[] = "candy"; // your network SSID (name)
+char pass[] = "oscar200541";    // your network password
+
+float distance;  // for ultrasonic sensor
 int duration;
 
-const int PulseWire = A0; // pulse sensor pin
+const int PulseWire = A0;  // pulse sensor pin
 const int LED13 = 13;
 int Threshold = 550;
 
-int button1 = 52; // setup button
+int button1 = 52;  // setup button
 int button2 = 53;
 int cnt = 0;
 
@@ -395,7 +397,7 @@ int eyepoint = 0;
 int BGLcounter = 0;
 int totalBGL = 0;
 
-int blue_light_pin = 38; // setup led for body testing
+int blue_light_pin = 38;  // setup led for body testing
 int green_light_pin = 40;
 int red_light_pin = 42;
 
@@ -404,7 +406,7 @@ int randomNum = 10;
 float analogValue;
 float input_voltage;
 
-long total_time[4]; // store reaction time
+long total_time[4];  // store reaction time
 long time1, time2;
 
 unsigned long PrivateChannelNumber = 1886454;
@@ -435,6 +437,97 @@ const int kSampleThreshold = 5;
 PulseSensorPlayground pulseSensor;
 
 
+
+
+void setup() {
+
+  sensor.begin();
+
+  pinMode(Trigpin, OUTPUT);
+  pinMode(Echopin, INPUT);
+
+  pinMode(blue_light_pin, OUTPUT);  // for reaction test
+  pinMode(green_light_pin, OUTPUT);
+  pinMode(red_light_pin, OUTPUT);
+
+  Serial.begin(115200);
+  Serial1.begin(115200);
+  WiFi.init(&Serial1);
+
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+
+
+  pulseSensor.analogInput(PulseWire);
+  pulseSensor.blinkOnPulse(LED13);
+  pulseSensor.setThreshold(Threshold);
+
+  if (!pulseSensor.begin()) {                    // pulsesensor test availbility
+    Serial.println("pulsesensor not working.");  // This prints one time at Arduino power - up,  or on Arduino reset.
+  }
+
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print("Attempting to connect to SSID ");
+    Serial.println(ssid);
+    while (WiFi.status() != WL_CONNECTED)
+    {
+      WiFi.begin(ssid, pass); // Connect to WPAWPA2 network
+
+      delay(5000);
+    }
+    Serial.println("Sucessfully Connected, now initializing...");
+  }
+  printWifiData();
+  ThingSpeak.begin(client);
+
+  digitalWrite(low_led, LOW);
+  digitalWrite(high_led, LOW);
+
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for (;;)
+      ;
+  }
+
+  /*mlx.begin();
+    if (!mlx.begin()) {
+    Serial.println("Error connecting to MLX sensor. Check wiring.");
+    while (1);
+    Serial.print("Emissivity = ");
+    Serial.println(mlx.readEmissivity());
+    Serial.println("================================================");
+    };*/
+
+  //sensor.begin();
+
+  if (sensor.begin() && sensor.setSamplingRate(kSamplingRate)) {
+    Serial.println("SPO2 Sensor initialized");
+  } else {
+    Serial.println("SPO2 Sensor not found");
+    while (1);
+  }
+
+
+  Serial.println("  ");
+  Serial.println("  ");
+  Serial.println("  ");
+  Serial.println("  ");
+
+  Serial.println("Welcome to Checkmate!");
+  Serial.println("Press Middle Button to Start.");
+  Serial.println("================================================");
+  Serial.println("Menu:");
+  Serial.println("Mode 1: Temperature Measurement");
+  Serial.println("Mode 2: Pulse measurement");
+  Serial.println("Mode 3: SpO2 measurement");
+  Serial.println("Mode 4: Blood Glucose Measurement");
+  Serial.println("Mode 5: Reaction Test");
+  Serial.println("Mode 6: Eye Test");
+  Serial.println("Mode 7: Memory Game");
+  Serial.println("Mode 8: Battery Level");
+}
+
 // Filter Instances
 LowPassFilter low_pass_filter_red(kLowPassCutoff, kSamplingFrequency);
 LowPassFilter low_pass_filter_ir(kLowPassCutoff, kSamplingFrequency);
@@ -464,106 +557,14 @@ float last_diff = NAN;
 bool crossed = false;
 long crossed_time = 0;
 
-void setup()
-{
-
-
-  pinMode(Trigpin, OUTPUT);
-  pinMode(Echopin, INPUT);
-
-  pinMode(blue_light_pin, OUTPUT); // for reaction test
-  pinMode(green_light_pin, OUTPUT);
-  pinMode(red_light_pin, OUTPUT);
-
-  Serial.begin(115200);
-  Serial1.begin(115200);
-  WiFi.init(&Serial1);
-
-  pinMode(button1, INPUT);
-  pinMode(button2, INPUT);
-
-
-  pulseSensor.analogInput(PulseWire);
-  pulseSensor.blinkOnPulse(LED13);
-  pulseSensor.setThreshold(Threshold);
-
-  if (!pulseSensor.begin())
-  { // pulsesensor test availbility
-    Serial.println("pulsesensor not working."); // This prints one time at Arduino power - up,  or on Arduino reset.
-  }
-
-  if (WiFi.status() != WL_CONNECTED)
-  {
-    Serial.print("Attempting to connect to SSID ");
-    Serial.println(ssid);
-    while (WiFi.status() != WL_CONNECTED)
-    {
-      WiFi.begin(ssid, pass); // Connect to WPAWPA2 network
-
-      delay(5000);
-    }
-    Serial.println("Sucessfully Connected, now initializing...");
-  }
-  printWifiData();
-  ThingSpeak.begin(client);
-
-  digitalWrite(low_led, LOW);
-  digitalWrite(high_led, LOW);
-
-  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
-  {
-    Serial.println(F("SSD1306 allocation failed"));
-    for (;;)
-      ;
-  }
-  mlx.begin();
-  if (!mlx.begin())
-  {
-    Serial.println("Error connecting to MLX sensor. Check wiring.");
-    while (1)
-      ;
-    Serial.print("Emissivity = ");
-    Serial.println(mlx.readEmissivity());
-    Serial.println("================================================");
-  };
-
-  if (sensor.begin() && sensor.setSamplingRate(kSamplingRate)) {
-    Serial.println("SPO2 Sensor initialized");
-  }
-  else {
-    Serial.println("SPO2 Sensor not found");
-    //while (1);
-  }
-
-  Serial.println("  ");
-  Serial.println("  ");
-  Serial.println("  ");
-  Serial.println("  ");
-
-  Serial.println("Welcome to Checkmate!");
-  Serial.println("Press Middle Button to Start.");
-  Serial.println("================================================");
-  Serial.println("Menu:");
-  Serial.println("Mode 1: Temperature Measurement");
-  Serial.println("Mode 2: Pulse measurement");
-  Serial.println("Mode 3: SpO2 measurement");
-  Serial.println("Mode 4: Blood Glucose Measurement");
-  Serial.println("Mode 5: Reaction Test");
-  Serial.println("Mode 6: Eye Test");
-  Serial.println("Mode 7: Memory Game");
-  Serial.println("Mode 8: Battery Level");
-}
-
-void loop()
-{
+void loop() {
   display.clearDisplay();
   boolean button1state = LOW;
   boolean button2state = LOW;
   button1state = digitalRead(button1);
   button2state = digitalRead(button2);
 
-  if (button1state == HIGH)
-  {
+  if (button1state == HIGH) {
     Serial.print(F("button 1 on for "));
     Serial.println(cnt);
     digitalWrite(button1, LOW);
@@ -583,45 +584,39 @@ void loop()
   }
 */
 
-long test_reaction()
-{
+long test_reaction() {
   // put your main code here, to run repeatedly:
   buttonWait(button1, button2);
-  for (int i = 0; i < 3; i++)
-  {
+  for (int i = 0; i < 3; i++) {
 
-    analogWrite(red_light_pin, 255); // red
+    analogWrite(red_light_pin, 255);  // red
     randomNum = random(3, 10);
-    while (randomNum > 0)
-    {
+    while (randomNum > 0) {
       randomNum--;
       delay(1000);
     }
     time1 = micros();
-    analogWrite(red_light_pin, 0);    // red
-    analogWrite(blue_light_pin, 255); // blue
-    while (digitalRead(button1) == LOW)
-    {
+    analogWrite(red_light_pin, 0);     // red
+    analogWrite(blue_light_pin, 255);  // blue
+    while (digitalRead(button1) == LOW) {
       // time2 = micros();
     }
     time2 = micros();
     total_time[i] = time1 - time2;
-    analogWrite(blue_light_pin, 0); // blue
+    analogWrite(blue_light_pin, 0);  // blue
     randomNum = random(10);
     Serial.println(F("press button 2 for next round"));
-    while (digitalRead(button2) == LOW)
-    {
+    while (digitalRead(button2) == LOW) {
       // empty wait for response
     }
   }
 
   total_time[4] = 0;
-  for (int i = 0; i < 3; i++)
-  {
+  for (int i = 0; i < 3; i++) {
     total_time[4] = total_time[4] + total_time[i];
   }
   // total_time[4]=total_time[4]/3;
-  float finals = abs(total_time[4] / 3000); // average time unit in ms
+  float finals = abs(total_time[4] / 3000);  // average time unit in ms
   Serial.print(finals);
   Serial.println("ms.");
   display.clearDisplay();
@@ -640,8 +635,7 @@ long test_reaction()
   // return total_time[4]; //return the average reaction time
 }
 
-void ultrasonic()
-{
+/*void ultrasonic() {
 
   digitalWrite(Trigpin, LOW);
   delayMicroseconds(2);
@@ -653,8 +647,7 @@ void ultrasonic()
   distance = duration * 0.034 / 2;
   Serial.println();
 
-  if (distance > 15)
-  {
+  if (distance > 15) {
     Serial.println("Distance = ");
     Serial.print(distance);
     Serial.print(" CM");
@@ -666,42 +659,41 @@ void ultrasonic()
     display.print(distance);
     display.print(" cm");
     display.display();
-    ThingSpeak.setField(1, distance);
-    ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+    //ThingSpeak.setField(1, distance);
+    //ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
     delay(1000);
     display.clearDisplay();
     display.setCursor(0, 0);
-  }
-  else
-  {
+  } else {
     Serial.println("Nobody Is Infront Of the Sensor");
   }
 
   return;
-}
+  }*/
 
 
 
-void pulsesensor()
-{
+void pulsesensor() {
+  delay(3000);
   int BPMmeasured = 0;
   int totalBPM = 0;
   while (BPMmeasured < 10) {
     int myBPM = pulseSensor.getBeatsPerMinute();
 
     pulseSensor.sawStartOfBeat();
-    if (myBPM > 30 && myBPM < 220)
-    {
+    if (myBPM > 30 && myBPM < 220) {
       Serial.print("BPM = ");
       Serial.println(myBPM);
       totalBPM += myBPM;
       BPMmeasured += 1;
-      delay(1000);
+      delay(500);
     }
   }
 
   Serial.print("Average BPM = ");
-  Serial.println(totalBPM /10);
+  Serial.println(totalBPM / 10);
+  display.clearDisplay();
+  display.setCursor(0, 0);
   display.setTextSize(2);
   display.setCursor(0, 0);
   display.setTextColor(SSD1306_WHITE);
@@ -717,13 +709,11 @@ void pulsesensor()
   return;
 }
 
-void displaymenu(int a)
-{
+void displaymenu(int a) {
   display.clearDisplay();
-  int menuNum = a % 7;
+  int menuNum = a % 6;
 
-  switch (menuNum)
-  {
+  switch (menuNum) {
 
 
     case 0:
@@ -733,7 +723,7 @@ void displaymenu(int a)
       display.drawBitmap(0, 0, epd_bitmap_chess_bmp, 128, 64, WHITE);
       display.display();
       break;
-    case 1:
+    /*case 1:
       Serial.println(F(" "));
 
       Serial.println(F("Entered Mode 1: Temperature Measurement"));
@@ -745,11 +735,10 @@ void displaymenu(int a)
       display.println(F("Temp "));
       display.println(F("Measure"));
       display.display();
-      while (digitalRead(button1) == LOW)
-      {
-        IR_temp();
+      while (digitalRead(button1) == LOW) {
+        //IR_temp();
       }
-      break;
+      break;*/
 
     case 2:
       Serial.println(F("Mode 2: Pulse Measurement"));
@@ -764,13 +753,12 @@ void displaymenu(int a)
       display.display();
       delay(1000);
       display.clearDisplay();
-      while (digitalRead(button1) == LOW)
-      {
+      while (digitalRead(button1) == LOW) {
         pulsesensor();
       }
       break;
 
-    case 3:
+    case 1:
       Serial.println(F("Mode 3: SpO2 Measurement"));
       Serial.println(F("Please place your thunb on the SpO2 sensor and wait a few second."));
 
@@ -780,16 +768,16 @@ void displaymenu(int a)
       display.println(F("Mode 3: "));
       display.println(F("SpO2 "));
       display.println(F("Measure"));
-      display.display(); while (digitalRead(button1) == LOW)
-      {
-         spo2();
-      }
-     
+      display.display();
+      //while (digitalRead(button1) == LOW) {
+      spo2();
+      //}
+
       //test_reaction();
 
       break;
 
-    case 4:
+    case 3:
       Serial.print(F("Mode 4: Blood Glucose Measurement"));
       Serial.println(F("Please blow air into gas sensor from above."));
       display.setCursor(0, 0);
@@ -801,14 +789,13 @@ void displaymenu(int a)
       display.println(F("Measure"));
       display.display();
       delay(1000);
-      while (digitalRead(button1) == LOW)
-      {
+      while (digitalRead(button1) == LOW) {
         blood_glucose();
       }
-      
+
 
       break;
-    case 5:
+    case 4:
       display.clearDisplay();
       Serial.println(F("Mode 5: Reaction Game"));
       Serial.println(F("Press button 1 when the LED turns RED"));
@@ -824,7 +811,7 @@ void displaymenu(int a)
       test_reaction();
       break;
 
-    case 6:
+    case 5:
       display.clearDisplay();
       Serial.println(F("Mode 6: Eye Test"));
       Serial.println(F("Press button 1 if you can see the word."));
@@ -859,187 +846,180 @@ void displaymenu(int a)
   return;
 }
 
-void printWifiData()
-{
+void printWifiData() {
   // print your WiFi shield's IP address
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address ");
   Serial.print(ip);
   Serial.print(".");
-  if (ip[0] == 0 && ip[1] == 0 && ip[2] == 0 && ip[3] == 0)
-  {
+  if (ip[0] == 0 && ip[1] == 0 && ip[2] == 0 && ip[3] == 0) {
     Serial.println(" IP FALL !!!");
   }
   Serial.println();
 }
 
 void spo2() {
-  auto sample = sensor.readSample(1000);
-  float current_value_red = sample.red;
-  float current_value_ir = sample.ir;
+  while (digitalRead(53) == LOW) {
+    auto sample = sensor.readSample(1000);
+    float current_value_red = sample.red;
+    float current_value_ir = sample.ir;
 
-  // Detect Finger using raw sensor value
-  if (sample.red > kFingerThreshold) {
-    if (millis() - finger_timestamp > kFingerCooldownMs) {
-      finger_detected = true;
+    // Detect Finger using raw sensor value
+    if (sample.red > kFingerThreshold) {
+      if (millis() - finger_timestamp > kFingerCooldownMs) {
+        finger_detected = true;
+      }
+    } else {
+      // Reset values if the finger is removed
+      differentiator.reset();
+      averager_bpm.reset();
+      averager_r.reset();
+      averager_spo2.reset();
+      low_pass_filter_red.reset();
+      low_pass_filter_ir.reset();
+      high_pass_filter.reset();
+      stat_red.reset();
+      stat_ir.reset();
+
+      finger_detected = false;
+      finger_timestamp = millis();
     }
-  }
-  else {
-    // Reset values if the finger is removed
-    differentiator.reset();
-    averager_bpm.reset();
-    averager_r.reset();
-    averager_spo2.reset();
-    low_pass_filter_red.reset();
-    low_pass_filter_ir.reset();
-    high_pass_filter.reset();
-    stat_red.reset();
-    stat_ir.reset();
 
-    finger_detected = false;
-    finger_timestamp = millis();
-  }
+    if (finger_detected) {
+      current_value_red = low_pass_filter_red.process(current_value_red);
+      current_value_ir = low_pass_filter_ir.process(current_value_ir);
 
-  if (finger_detected) {
-    current_value_red = low_pass_filter_red.process(current_value_red);
-    current_value_ir = low_pass_filter_ir.process(current_value_ir);
+      // Statistics for pulse oximetry
+      stat_red.process(current_value_red);
+      stat_ir.process(current_value_ir);
 
-    // Statistics for pulse oximetry
-    stat_red.process(current_value_red);
-    stat_ir.process(current_value_ir);
+      // Heart beat detection using value for red LED
+      float current_value = high_pass_filter.process(current_value_red);
+      float current_diff = differentiator.process(current_value);
 
-    // Heart beat detection using value for red LED
-    float current_value = high_pass_filter.process(current_value_red);
-    float current_diff = differentiator.process(current_value);
+      // Valid values?
+      if (!isnan(current_diff) && !isnan(last_diff)) {
 
-    // Valid values?
-    if (!isnan(current_diff) && !isnan(last_diff)) {
-
-      // Detect Heartbeat - Zero-Crossing
-      if (last_diff > 0 && current_diff < 0) {
-        crossed = true;
-        crossed_time = millis();
-      }
-
-      if (current_diff > 0) {
-        crossed = false;
-      }
-
-      // Detect Heartbeat - Falling Edge Threshold
-      if (crossed && current_diff < kEdgeThreshold) {
-        if (last_heartbeat != 0 && crossed_time - last_heartbeat > 300) {
-          // Show Results
-          int bpm = 60000 / (crossed_time - last_heartbeat);
-          float rred = (stat_red.maximum() - stat_red.minimum()) / stat_red.average();
-          float rir = (stat_ir.maximum() - stat_ir.minimum()) / stat_ir.average();
-          float r = rred / rir;
-          float spo2 = kSpO2_A * r * r + kSpO2_B * r + kSpO2_C;
-
-          if (bpm > 50 && bpm < 250) {
-            // Average?
-            if (kEnableAveraging) {
-              int average_bpm = averager_bpm.process(bpm);
-              int average_r = averager_r.process(r);
-              int average_spo2 = averager_spo2.process(spo2);
-
-              // Show if enough samples have been collected
-              if (averager_bpm.count() >= kSampleThreshold) {
-                Serial.print("Time (ms): ");
-                Serial.println(millis());
-                Serial.print("Heart Rate (avg, bpm): ");
-                Serial.println(average_bpm);
-                Serial.print("R-Value (avg): ");
-                Serial.println(average_r);
-                Serial.print("SpO2 (avg, %): ");
-                Serial.println(average_spo2);
-              }
-            }
-            else {
-              Serial.print("Time (ms): ");
-              Serial.println(millis());
-              Serial.print("Heart Rate (current, bpm): ");
-              Serial.println(bpm);
-              Serial.print("R-Value (current): ");
-              Serial.println(r);
-              Serial.print("SpO2 (current, %): ");
-              Serial.println(spo2);
-            }
-          }
-
-          // Reset statistic
-          stat_red.reset();
-          stat_ir.reset();
+        // Detect Heartbeat - Zero-Crossing
+        if (last_diff > 0 && current_diff < 0) {
+          crossed = true;
+          crossed_time = millis();
         }
 
-        crossed = false;
-        last_heartbeat = crossed_time;
-      }
-    }
+        if (current_diff > 0) {
+          crossed = false;
+        }
 
-    last_diff = current_diff;
+        // Detect Heartbeat - Falling Edge Threshold
+        if (crossed && current_diff < kEdgeThreshold) {
+          if (last_heartbeat != 0 && crossed_time - last_heartbeat > 300) {
+            // Show Results
+            int bpm = 60000 / (crossed_time - last_heartbeat);
+            float rred = (stat_red.maximum() - stat_red.minimum()) / stat_red.average();
+            float rir = (stat_ir.maximum() - stat_ir.minimum()) / stat_ir.average();
+            float r = rred / rir;
+            float spo2 = kSpO2_A * r * r + kSpO2_B * r + kSpO2_C;
+
+            if (bpm > 50 && bpm < 250) {
+              // Average?
+              if (kEnableAveraging) {
+                int average_bpm = averager_bpm.process(bpm);
+                int average_r = averager_r.process(r);
+                int average_spo2 = averager_spo2.process(spo2);
+
+                // Show if enough samples have been collected
+                if (averager_bpm.count() >= kSampleThreshold) {
+                  Serial.print("Time (ms): ");
+                  Serial.println(millis());
+                  Serial.print("Heart Rate (avg, bpm): ");
+                  Serial.println(average_bpm);
+                  Serial.print("R-Value (avg): ");
+                  Serial.println(average_r);
+                  Serial.print("SpO2 (avg, %): ");
+                  Serial.println(average_spo2);
+                }
+              } else {
+                Serial.print("Time (ms): ");
+                Serial.println(millis());
+                Serial.print("Heart Rate (current, bpm): ");
+                Serial.println(bpm);
+                Serial.print("R-Value (current): ");
+                Serial.println(r);
+                Serial.print("SpO2 (current, %): ");
+                Serial.println(spo2);
+              }
+            }
+
+            // Reset statistic
+            stat_red.reset();
+            stat_ir.reset();
+          }
+
+          crossed = false;
+          last_heartbeat = crossed_time;
+        }
+      }
+
+      last_diff = current_diff;
+    }
   }
+  ThingSpeak.setField(3, spo2);
+  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+
 }
 
-void blood_glucose()
-{
-  while (BGLcounter < 10)
-  {
+void blood_glucose() {
+  while (BGLcounter < 10) {
     float gas_sensor_value = analogRead(A7);
     float Volt = gas_sensor_value * 5.0 / 1024.0;
     float BGL = (158.12 * Volt) - 639.35;
     //if (BGL > 45)
     //{
-      // Serial.println(BGL);
-      Serial.println(BGL);
-      totalBGL += BGL;
-      delay(250);
-      BGLcounter++;
-    }//
+    // Serial.println(BGL);
+    Serial.println(BGL);
+    totalBGL += BGL;
+    delay(100);
+    BGLcounter++;
+  }  //
   //}
   Serial.print("BGL: ");
   Serial.print(totalBGL / BGLcounter);
   Serial.println("mg/dl");
-  if (BGLcounter >= 10)
-  {
+  if (BGLcounter == 10) {
     totalBGL = 0;
     BGLcounter = 0;
   }
-  return ;
+  return;
 }
 
-void IR_temp()
-{ 
-  Serial.println("im in loop");
-  //mlx.AddrSet(0x5A);
-  Serial.print("Ambient = "); 
-  Serial.println(mlx.readAmbientTempC());
-  Serial.print("Temp in C: ");
-  Serial.println(mlx.readObjectTempC());
-  delay(250);
-  return ;
-}
+/*void IR_temp() {
+  while (digitalRead(button1) == LOW) {
+    Serial.println("im in loop");
+    //mlx.AddrSet(0x5A);
+    Serial.print("Ambient = ");
+    Serial.println(mlx.readAmbientTempC());
+    Serial.print("Temp in C: ");
+    Serial.println(mlx.readObjectTempC());
+    delay(250);
+    return;
+  }
+  }*/
 
-void buttonWait(int buttonPin1, int buttonPin2)
-{
+void buttonWait(int buttonPin1, int buttonPin2) {
   int buttonState1 = 0;
   int buttonState2 = 0;
-  while (1)
-  {
+  while (1) {
     buttonState1 = digitalRead(buttonPin1);
     buttonState2 = digitalRead(buttonPin2);
-    if (buttonState1 == HIGH)
-    {
+    if (buttonState1 == HIGH) {
       eyepoint = eyepoint + 1;
       return;
-    }
-    else if (buttonState2 == HIGH)
-    {
+    } else if (buttonState2 == HIGH) {
       return;
     }
   }
 }
-void eyetest()
-{
+void eyetest() {
 
   eyepoint = 0;
   display.clearDisplay();
@@ -1052,13 +1032,13 @@ void eyetest()
 
   // tut for Y/N button, standing length
 
-  display.clearDisplay(); //#1
+  display.clearDisplay();  //#1
   display.setTextSize(7);
   display.setCursor(0, 0);
   display.setTextColor(SSD1306_WHITE);
   display.print("F");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
   display.clearDisplay();
@@ -1067,7 +1047,7 @@ void eyetest()
   display.setTextColor(SSD1306_WHITE);
   display.print("F P");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
 
@@ -1077,17 +1057,17 @@ void eyetest()
   display.setTextColor(SSD1306_WHITE);
   display.print("T O ");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
 
-  display.clearDisplay(); //#4
+  display.clearDisplay();  //#4
   display.setTextSize(4);
   display.setCursor(0, 0);
   display.setTextColor(SSD1306_WHITE);
   display.print("L P E D");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
 
@@ -1097,7 +1077,7 @@ void eyetest()
   display.setTextColor(SSD1306_WHITE);
   display.print("P E C F D");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
 
@@ -1107,17 +1087,17 @@ void eyetest()
   display.setTextColor(SSD1306_WHITE);
   display.print("E D F C Z P");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
 
-  display.clearDisplay(); //#7
+  display.clearDisplay();  //#7
   display.setTextSize(1);
   display.setCursor(0, 0);
   display.setTextColor(SSD1306_WHITE);
   display.print("F E L O P Z D");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 
   delay(1000);
 
@@ -1129,83 +1109,63 @@ void eyetest()
   display.print(eyepoint);
   display.println("/7.");
   display.display();
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
   display.clearDisplay();
   display.setCursor(0, 0);
   display.print("This is   the end of eye test.");
   display.display();
 
-  buttonWait(button1, button2); // wait for button press on pin 2
+  buttonWait(button1, button2);  // wait for button press on pin 2
 }
 
 
-void BatteryLevelCheck()
-{ // need 2k ohm resistor
+void BatteryLevelCheck() {  // need 2k ohm resistor
   analogValue = analogRead(voltageCheckPin);
   Serial.println(analogValue);
   delay(1000);
   input_voltage = (analogValue * 5.0) / 1024.0;
   Serial.println(input_voltage);
 
-  if (input_voltage < 0.50 && input_voltage >= 0.00)
-  {
+  if (input_voltage < 0.50 && input_voltage >= 0.00) {
     Serial.println("10%");
-    analogWrite(red_light_pin, 255); // red
-    analogWrite(green_light_pin, 0); // green
-  }
-  else if (input_voltage < 1.00 && input_voltage >= 0.50)
-  {
-    Serial.println("20%%");
     analogWrite(red_light_pin, 255);  // red
-    analogWrite(green_light_pin, 63); // green
-  }
-  else if (input_voltage < 1.50 && input_voltage >= 1.00)
-  {
+    analogWrite(green_light_pin, 0);  // green
+  } else if (input_voltage < 1.00 && input_voltage >= 0.50) {
+    Serial.println("20%%");
+    analogWrite(red_light_pin, 255);   // red
+    analogWrite(green_light_pin, 63);  // green
+  } else if (input_voltage < 1.50 && input_voltage >= 1.00) {
     Serial.println("30%");
-    analogWrite(red_light_pin, 255);   // red
-    analogWrite(green_light_pin, 127); // green
-  }
-  else if (input_voltage < 2.00 && input_voltage >= 1.50)
-  {
+    analogWrite(red_light_pin, 255);    // red
+    analogWrite(green_light_pin, 127);  // green
+  } else if (input_voltage < 2.00 && input_voltage >= 1.50) {
     Serial.println("40%");
-    analogWrite(red_light_pin, 255);   // red
-    analogWrite(green_light_pin, 191); // green
-  }
-  else if (input_voltage < 2.50 && input_voltage >= 2.00)
-  {
+    analogWrite(red_light_pin, 255);    // red
+    analogWrite(green_light_pin, 191);  // green
+  } else if (input_voltage < 2.50 && input_voltage >= 2.00) {
     Serial.println("50%");
-    analogWrite(red_light_pin, 255);   // red
-    analogWrite(green_light_pin, 255); // green
-  }
-  else if (input_voltage < 3.00 && input_voltage >= 2.50)
-  {
+    analogWrite(red_light_pin, 255);    // red
+    analogWrite(green_light_pin, 255);  // green
+  } else if (input_voltage < 3.00 && input_voltage >= 2.50) {
     Serial.println("60%");
-    analogWrite(red_light_pin, 204);   // red
-    analogWrite(green_light_pin, 255); // green
-  }
-  else if (input_voltage < 3.50 && input_voltage >= 3.00)
-  {
+    analogWrite(red_light_pin, 204);    // red
+    analogWrite(green_light_pin, 255);  // green
+  } else if (input_voltage < 3.50 && input_voltage >= 3.00) {
     Serial.println("70%");
-    analogWrite(red_light_pin, 153);   // red
-    analogWrite(green_light_pin, 255); // green
-  }
-  else if (input_voltage < 4.00 && input_voltage >= 3.50)
-  {
+    analogWrite(red_light_pin, 153);    // red
+    analogWrite(green_light_pin, 255);  // green
+  } else if (input_voltage < 4.00 && input_voltage >= 3.50) {
     Serial.println("80%");
-    analogWrite(red_light_pin, 102);   // red
-    analogWrite(green_light_pin, 255); // green
-  }
-  else if (input_voltage < 4.50 && input_voltage >= 4.00)
-  {
+    analogWrite(red_light_pin, 102);    // red
+    analogWrite(green_light_pin, 255);  // green
+  } else if (input_voltage < 4.50 && input_voltage >= 4.00) {
     Serial.println("90%");
-    analogWrite(red_light_pin, 51);    // red
-    analogWrite(green_light_pin, 255); // green
-  }
-  else if (input_voltage < 5.00 && input_voltage >= 4.50)
-  {
+    analogWrite(red_light_pin, 51);     // red
+    analogWrite(green_light_pin, 255);  // green
+  } else if (input_voltage < 5.00 && input_voltage >= 4.50) {
     Serial.println("100%");
-    analogWrite(red_light_pin, 0);     // red
-    analogWrite(green_light_pin, 255); // green
+    analogWrite(red_light_pin, 0);      // red
+    analogWrite(green_light_pin, 255);  // green
   }
   delay(500);
 }
