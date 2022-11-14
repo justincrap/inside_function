@@ -12,7 +12,7 @@ int gameState = 0;
 int gameValues[NUMBERTOWIN];
 int roundNum = 0;
 
-
+float spo2;
 
 unsigned long previousMillis = 0;
 unsigned long interval1 = 500;
@@ -387,10 +387,11 @@ void spo2sensor();
 void pulsesensor();
 //void ultrasonic();
 void blood_glucose();
-//void IR_temp();
+void IR_temp();
 void buttonWait();
 void eyetest();
 void memorytest();
+void printWifiData();
 
 int status = WL_IDLE_STATUS;
 WiFiEspClient client;
@@ -511,14 +512,18 @@ void setup() {
       ;
   }
 
-  /*mlx.begin();
-    if (!mlx.begin()) {
+  while (!Serial);
+
+  Serial.println("Adafruit MLX90614 test");
+
+  if (!mlx.begin()) {
     Serial.println("Error connecting to MLX sensor. Check wiring.");
     while (1);
-    Serial.print("Emissivity = ");
-    Serial.println(mlx.readEmissivity());
-    Serial.println("================================================");
-    };*/
+  };
+
+  Serial.print("Emissivity = "); Serial.println(mlx.readEmissivity());
+  Serial.println("================================================");
+  ;
 
   //sensor.begin();
 
@@ -746,7 +751,7 @@ void pulsesensor() {
 
 void displaymenu(int a) {
   display.clearDisplay();
-  int menuNum = a % 6;
+  int menuNum = a % 8;
 
   switch (menuNum) {
 
@@ -771,11 +776,11 @@ void displaymenu(int a) {
       display.println(F("Measure"));
       display.display();
       while (digitalRead(button1) == LOW) {
-        //IR_temp();
+        IR_temp();
       }
       break;*/
 
-    case 2:
+    case 1:
       Serial.println(F("Mode 2: Pulse Measurement"));
       Serial.println(F("Please place your thunb on the pulse sensor and wait a few second."));
 
@@ -793,7 +798,7 @@ void displaymenu(int a) {
       }
       break;
 
-    case 1:
+    case 2:
       Serial.println(F("Mode 3: SpO2 Measurement"));
       Serial.println(F("Please place your thunb on the SpO2 sensor and wait a few second."));
 
@@ -807,8 +812,6 @@ void displaymenu(int a) {
       //while (digitalRead(button1) == LOW) {
       spo2sensor();
       //}
-
-      //test_reaction();
 
       break;
 
@@ -858,6 +861,20 @@ void displaymenu(int a) {
       display.println(F("Eye Test "));
       display.display();
       eyetest();
+      break;
+
+    case 6:
+      display.clearDisplay();
+      Serial.println(F("Mode 7: Memory Test"));
+      Serial.println(F("Three button represent three different color."));
+      Serial.println(F("Please the button accroding to LED's color."));
+      display.setCursor(0, 0);
+      display.setTextSize(2);
+      display.setTextColor(SSD1306_WHITE);
+      display.println(F("Mode 7: "));
+      display.println(F("Memory Test"));
+      display.display();
+      memorytest();
       break;
 
       /* Serial.println(F("Mode 5: Reaction Game"));
@@ -997,37 +1014,48 @@ void spo2sensor() {
 
       last_diff = current_diff;
     }
+
   }
-  
+  ThingSpeak.setField(5, spo2);
+  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+
 
 }
 
 void blood_glucose() {
-  while (BGLcounter < 10) {
-    float gas_sensor_value = analogRead(A7);
-    float Volt = gas_sensor_value * 5.0 / 1024.0;
-    float BGL = (158.12 * Volt) - 639.35;
-    //if (BGL > 45)
-    //{
-    // Serial.println(BGL);
-    Serial.println(BGL);
-    totalBGL += BGL;
-    delay(100);
-    BGLcounter++;
-  }  //
-  //}
-  Serial.print("BGL: ");
-  Serial.print(totalBGL / BGLcounter);
-  Serial.println("mg/dl");
-  if (BGLcounter == 10) {
-    totalBGL = 0;
-    BGLcounter = 0;
+  while (digitalRead(button2) == LOW) {
+    while (BGLcounter < 10) {
+      float gas_sensor_value = analogRead(A7);
+      float Volt = gas_sensor_value * 5.0 / 1024.0;
+      float BGL = (158.12 * Volt) - 359.35;
+      //if (BGL > 45)
+      //{
+      // Serial.println(BGL);
+      Serial.println(BGL);
+      totalBGL += BGL;
+      delay(100);
+      BGLcounter++;
+    }
+
+    Serial.print("BGL: ");
+    Serial.print(totalBGL / BGLcounter);
+    Serial.println("mg/dl");
+
+
+
+    if (BGLcounter == 10) {
+      totalBGL = 0;
+      BGLcounter = 0;
+    }
   }
+  ThingSpeak.setField(5, totalBGL / BGLcounter);
+  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+
   return;
 }
 
-/*void IR_temp() {
-  while (digitalRead(button1) == LOW) {
+void IR_temp() {
+  while (digitalRead(button2) == LOW) {
     Serial.println("im in loop");
     //mlx.AddrSet(0x5A);
     Serial.print("Ambient = ");
@@ -1037,7 +1065,7 @@ void blood_glucose() {
     delay(250);
     return;
   }
-  }*/
+}
 
 void buttonWait(int buttonPin1, int buttonPin2) {
   int buttonState1 = 0;
@@ -1149,6 +1177,9 @@ void eyetest() {
   display.print("This is   the end of eye test.");
   display.display();
 
+  ThingSpeak.setField(7, eyepoint);
+  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+
   buttonWait(button1, button2);  // wait for button press on pin 2
 }
 
@@ -1205,69 +1236,71 @@ void BatteryLevelCheck() {  // need 2k ohm resistor
 }
 
 void memorytest() {
-
-  if (gameState == 0)
-  {
-    int button0 = digitalRead(buttonArray[0]);
-    int button1 = digitalRead(buttonArray[1]);
-    int button2 = digitalRead(buttonArray[2]);
-    int button3 = digitalRead(buttonArray[3]);
-
-    //if no buttons are pressed (since button input is pullup we show all buttons pressed) then play pre_game
-    if (button0 && button1 && button2 && button3)
+  while (digitalRead(button2) == LOW) {
+    if (gameState == 0)
     {
-      pre_game();
+      int button0 = digitalRead(buttonArray[0]);
+      int button1 = digitalRead(buttonArray[1]);
+      int button2 = digitalRead(buttonArray[2]);
+      int button3 = digitalRead(buttonArray[3]);
+
+      //if no buttons are pressed (since button input is pullup we show all buttons pressed) then play pre_game
+      if (button0 && button1 && button2 && button3)
+      {
+        pre_game();
+      }
+      // if a button is pressed set up for the game
+      else
+      {
+        Serial.println("button Pressed");
+        //turn leds off before starting game --> function setLed() states that if ledNum is <0 led is LOW
+        setLed(-1);
+        //set the round number to zero so you start on the first round
+        roundNum = 0;
+        delay (1000);
+        //set gameState to 1
+        gameState = 1;
+      }
     }
-    // if a button is pressed set up for the game
-    else
+
+    if (gameState == 1)
     {
-      Serial.println("button Pressed");
-      //turn leds off before starting game --> function setLed() states that if ledNum is <0 led is LOW
-      setLed(-1);
-      //set the round number to zero so you start on the first round
-      roundNum = 0;
+      gamePlay();
+    }
+
+    if (gameState == 2)
+    {
+      //You win!! - play winning sound and scroll through leds (winDisplay)3 times followed by lose display once for good transition.
+      //delay to give player time to release button press before winning sound plays
+      delay(500);
+      winDisplay();
+      winDisplay();
+      winDisplay();
+      loseDisplay();
+
+      Serial.println("winDisplay");
+      //delay briefly before running pre_game
       delay (1000);
-      //set gameState to 1
-      gameState = 1;
+      //reset gameState to zero to call pre_game
+      gameState = 0;
     }
-  }
 
-  if (gameState == 1)
-  {
-    gamePlay();
-  }
+    if (gameState == 3)
+    {
+      //You lose :( - play losing sound and flash leds (loseDisplay)3 times for good transition.
+      //delay to give player time to release button press before losing sound plays
+      delay(500);
+      loseDisplay();
+      loseDisplay();
+      loseDisplay();
+      Serial.println("loseDisplay");
+      //delay briefly before running pre_game
+      delay (1000);
+      //reset gameState to zero to call pre_game
+      gameState = 0;
+    }
 
-  if (gameState == 2)
-  {
-    //You win!! - play winning sound and scroll through leds (winDisplay)3 times followed by lose display once for good transition.
-    //delay to give player time to release button press before winning sound plays
-    delay(500);
-    winDisplay();
-    winDisplay();
-    winDisplay();
-    loseDisplay();
-    Serial.println("winDisplay");
-    //delay briefly before running pre_game
-    delay (1000);
-    //reset gameState to zero to call pre_game
-    gameState = 0;
   }
-
-  if (gameState == 3)
-  {
-    //You lose :( - play losing sound and flash leds (loseDisplay)3 times for good transition.
-    //delay to give player time to release button press before losing sound plays
-    delay(500);
-    loseDisplay();
-    loseDisplay();
-    loseDisplay();
-    Serial.println("loseDisplay");
-    //delay briefly before running pre_game
-    delay (1000);
-    //reset gameState to zero to call pre_game
-    gameState = 0;
-  }
-
 }
 
 void pre_game()
@@ -1345,7 +1378,10 @@ void gamePlay()
             Serial.println("You Win!");
             // you won!
             // set gameState to 2 to run winning fuction
+            ThingSpeak.setField(8, roundNum + 1);
+            ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
             gameState = 2;
+
             return;
           }
           else
@@ -1358,7 +1394,8 @@ void gamePlay()
       {
         //incorrect input
         Serial.println("You Lose!");
-
+        ThingSpeak.setField(8, roundNum);
+            ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
         // you lost :(
         // set gameState to 3 to run losing function
         gameState = 3;
