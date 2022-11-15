@@ -1235,9 +1235,9 @@ void gamePlay()
         display.setTextSize(2);
         display.setCursor(0, 0);
         display.setTextColor(SSD1306_WHITE);
-        display.println(F("Memory Level."));
+        display.println(F("Memory    Level."));
         display.println(roundNum + 1);
-        display.println(F(" /7 "));
+        display.print(F(" /7 "));
         display.display();
         ThingSpeak.setField(7, roundNum);
         ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
