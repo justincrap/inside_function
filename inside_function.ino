@@ -5,14 +5,12 @@
 
 int ledArray[] = {36, 37, 38}; // ledArray[0] is green, ledArray[1] is red, ledArray[2] is yellow, and ledArray[3] is blue.
 int buttonArray[] = {26, 28, 30}; // buttonArray[0] is green, buttonArray[1] is red, buttonArray[2] is yellow, and buttonArray[3] is blue.
-#define NUMBERTOWIN 5 //Number of lights you have to match to win
+#define NUMBERTOWIN 7 //Number of lights you have to match to win
 int pinCount = 3;
 int ledState = 0;
 int gameState = 0;
 int gameValues[NUMBERTOWIN];
 int roundNum = 0;
-
-float spo2;
 
 unsigned long previousMillis = 0;
 unsigned long interval1 = 500;
@@ -285,74 +283,6 @@ const unsigned char epd_bitmap_bloodglucose[] PROGMEM = {
   0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0
 };
 
-// 'wifi error', 128x64px
-const unsigned char epd_bitmap_wifi_error[] PROGMEM = {
-  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe0, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x80, 0x00, 0x00, 0x00, 0x1f, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xff, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x07, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7f, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xe0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7f, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1f, 0xff, 0xff,
-  0xff, 0xff, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0xff, 0xff,
-  0xff, 0xff, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xff, 0xff,
-  0xff, 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x07, 0xfc, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0x80, 0x00, 0x00, 0x00, 0x07, 0xff, 0xff, 0xfc, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x1f, 0xff, 0xff, 0xff, 0x80, 0x01, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xfc, 0x00, 0x00, 0x00, 0x07, 0xff, 0xff, 0xff, 0xff, 0xfe, 0x07, 0xf0, 0x00, 0x7f, 0xff,
-  0xff, 0xf8, 0x00, 0x00, 0x00, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0x8f, 0xc0, 0x00, 0x3f, 0xff,
-  0xff, 0xe0, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x07, 0xff,
-  0xff, 0xe0, 0x00, 0x00, 0x03, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x07, 0xff,
-  0xff, 0xc0, 0x00, 0x00, 0x07, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x03, 0xff,
-  0xff, 0x80, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xfe, 0x07, 0xff, 0xff, 0xf8, 0x00, 0xf8, 0x01, 0xff,
-  0xff, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0x80, 0x00, 0x3f, 0xff, 0xf8, 0x00, 0xf8, 0x01, 0xff,
-  0xfe, 0x00, 0x00, 0x03, 0xff, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x3f, 0xf0, 0x00, 0xf8, 0x00, 0x7f,
-  0xfc, 0x00, 0x00, 0x07, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x0f, 0xe0, 0x00, 0xf8, 0x00, 0x7f,
-  0xf8, 0x00, 0x00, 0x1f, 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x01, 0xe0, 0x00, 0xf0, 0x00, 0x7f,
-  0xf0, 0x00, 0x00, 0x3f, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x01, 0xe0, 0x00, 0xf0, 0x00, 0x7f,
-  0xe0, 0x00, 0x00, 0x7f, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0xf0, 0x00, 0x3f,
-  0xe0, 0x00, 0x01, 0xff, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0x80, 0x00, 0x03, 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0x80, 0x00, 0x07, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0x80, 0x00, 0x0f, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0xe0, 0x00, 0x3f, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0xf0, 0x00, 0x3f, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0xf8, 0x00, 0x7f, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0xf0, 0x00, 0x1f,
-  0xfe, 0x01, 0xff, 0xe0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0x00, 0x00, 0x3f,
-  0xfe, 0x01, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xc0, 0x00, 0x00, 0x00, 0x3f,
-  0xff, 0x87, 0xff, 0x80, 0x00, 0x00, 0x03, 0xff, 0xff, 0xfc, 0x01, 0xe0, 0x00, 0xf0, 0x00, 0x7f,
-  0xff, 0xc7, 0xff, 0x00, 0x00, 0x00, 0x0f, 0xff, 0xff, 0xfe, 0x00, 0xe0, 0x00, 0xf8, 0x00, 0x7f,
-  0xff, 0xff, 0xfc, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xe0, 0xf0, 0x00, 0xf8, 0x00, 0x7f,
-  0xff, 0xff, 0xfc, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0xf8, 0xf0, 0x00, 0xf8, 0x00, 0xff,
-  0xff, 0xff, 0xfc, 0x00, 0x00, 0x03, 0xff, 0xff, 0xff, 0xff, 0xfc, 0x70, 0x00, 0xf8, 0x00, 0xff,
-  0xff, 0xff, 0xf0, 0x00, 0x00, 0x1f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xbc, 0x00, 0x20, 0x01, 0xff,
-  0xff, 0xff, 0xf0, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x03, 0xff,
-  0xff, 0xff, 0xe0, 0x00, 0x01, 0xff, 0xff, 0xf8, 0x01, 0xff, 0xff, 0xff, 0x00, 0x00, 0x07, 0xff,
-  0xff, 0xff, 0xe0, 0x00, 0x01, 0xff, 0xff, 0xc0, 0x00, 0x3f, 0xff, 0xff, 0x80, 0x00, 0x0f, 0xff,
-  0xff, 0xff, 0xf0, 0x00, 0x03, 0xff, 0xff, 0x00, 0x00, 0x1f, 0xff, 0xff, 0x80, 0x00, 0x3f, 0xff,
-  0xff, 0xff, 0xf8, 0x00, 0x07, 0xff, 0xe0, 0x00, 0x00, 0x00, 0xff, 0xff, 0xf8, 0x00, 0xff, 0xff,
-  0xff, 0xff, 0xfc, 0x00, 0x0f, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xfe, 0x07, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0x00, 0x3f, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0x00, 0x3f, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x07, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xc0, 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xe0, 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xf3, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7f, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xf8, 0x00, 0x00, 0x03, 0xf8, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff,
-  0xff, 0xff, 0xff, 0xff, 0xf8, 0x00, 0x00, 0x0f, 0xfe, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff
-};
-
 #define USE_ARDUINO_INTERRUPTS true
 #include <PulseSensorPlayground.h>
 
@@ -373,11 +303,6 @@ const unsigned char epd_bitmap_wifi_error[] PROGMEM = {
 #define SCREEN_HEIGHT 64
 #define OLED_RESET -1
 
-#define Trigpin 6  // setup ultrasonic sensor
-#define Echopin 5
-#define low_led 9
-#define high_led 10
-
 #define voltageCheckPin A4
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);  // setup oled
@@ -385,9 +310,7 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 void spo2sensor();
 void pulsesensor();
-//void ultrasonic();
 void blood_glucose();
-void IR_temp();
 void buttonWait();
 void eyetest();
 void memorytest();
@@ -395,11 +318,11 @@ void printWifiData();
 
 int status = WL_IDLE_STATUS;
 WiFiEspClient client;
-//char ssid[] = "EE3070_P1615_1"; // your network SSID (name)
-//char pass[] = "EE3070P1615";    // your network password
+char ssid[] = "EE3070_P1615_1"; // your network SSID (name)
+char pass[] = "EE3070P1615";    // your network password
 
-char ssid[] = "candy"; // your network SSID (name)
-char pass[] = "oscar200541";    // your network password
+//char ssid[] = "candy"; // your network SSID (name)
+//char pass[] = "oscar200541";    // your network password
 
 float distance;  // for ultrasonic sensor
 int duration;
@@ -414,8 +337,8 @@ int cnt = 0;
 
 int eyepoint = 0;
 
-int BGLcounter = 0;
-int totalBGL = 0;
+float BGLcounter = 0;
+float totalBGL = 0;
 
 int blue_light_pin = 38;  // setup led for body testing
 int green_light_pin = 40;
@@ -460,13 +383,9 @@ void setLed(int ledNum);
 void displayClue(int roundNum);
 boolean waitForInput(int buttonNum);
 
-
 void setup() {
 
   sensor.begin();
-
-  pinMode(Trigpin, OUTPUT);
-  pinMode(Echopin, INPUT);
 
   pinMode(blue_light_pin, OUTPUT);  // for reaction test
   pinMode(green_light_pin, OUTPUT);
@@ -478,7 +397,6 @@ void setup() {
 
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);
-
 
   pulseSensor.analogInput(PulseWire);
   pulseSensor.blinkOnPulse(LED13);
@@ -503,29 +421,11 @@ void setup() {
   printWifiData();
   ThingSpeak.begin(client);
 
-  digitalWrite(low_led, LOW);
-  digitalWrite(high_led, LOW);
-
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("SSD1306 allocation failed"));
     for (;;)
       ;
   }
-
-  while (!Serial);
-
-  Serial.println("Adafruit MLX90614 test");
-
-  if (!mlx.begin()) {
-    Serial.println("Error connecting to MLX sensor. Check wiring.");
-    while (1);
-  };
-
-  Serial.print("Emissivity = "); Serial.println(mlx.readEmissivity());
-  Serial.println("================================================");
-  ;
-
-  //sensor.begin();
 
   if (sensor.begin() && sensor.setSamplingRate(kSamplingRate)) {
     Serial.println("SPO2 Sensor initialized");
@@ -547,18 +447,16 @@ void setup() {
   }
   randomSeed(analogRead(0));
 
-
-
   Serial.println("  ");
   Serial.println("  ");
   Serial.println("  ");
   Serial.println("  ");
 
   Serial.println("Welcome to Checkmate!");
-  Serial.println("Press Middle Button to Start.");
+  Serial.println("Press Upper Button to Start.");
   Serial.println("================================================");
   Serial.println("Menu:");
-  Serial.println("Mode 1: Temperature Measurement");
+  Serial.println("Mode 1: Icon");
   Serial.println("Mode 2: Pulse measurement");
   Serial.println("Mode 3: SpO2 measurement");
   Serial.println("Mode 4: Blood Glucose Measurement");
@@ -605,8 +503,8 @@ void loop() {
   button2state = digitalRead(button2);
 
   if (button1state == HIGH) {
-    Serial.print(F("button 1 on for "));
-    Serial.println(cnt);
+    //Serial.print(F("button 1 on for "));
+    //Serial.println(cnt);
     digitalWrite(button1, LOW);
     displaymenu(cnt);
     cnt = cnt + 1;
@@ -614,15 +512,6 @@ void loop() {
   }
   delay(100);
 }
-
-/*void showimage(const unsigned char image1){
-
-  display.clearDisplay();
-  display.setCursor(0,0);
-  display.drawBitmap(0, 0, image1, 128, 64, WHITE);
-  display.display();
-  }
-*/
 
 long test_reaction() {
   // put your main code here, to run repeatedly:
@@ -666,7 +555,7 @@ long test_reaction() {
   display.println("Reaction Time: ");
   display.print(finals);
   display.display();
-  ThingSpeak.setField(3, finals);
+  ThingSpeak.setField(5, finals);
   ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
   delay(1000);
   display.clearDisplay();
@@ -674,44 +563,6 @@ long test_reaction() {
 
   // return total_time[4]; //return the average reaction time
 }
-
-/*void ultrasonic() {
-
-  digitalWrite(Trigpin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(Trigpin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(Trigpin, LOW);
-
-  duration = pulseIn(Echopin, HIGH);
-  distance = duration * 0.034 / 2;
-  Serial.println();
-
-  if (distance > 15) {
-    Serial.println("Distance = ");
-    Serial.print(distance);
-    Serial.print(" CM");
-    Serial.println();
-    display.clearDisplay();
-    display.setTextSize(2);
-    display.setTextColor(SSD1306_WHITE);
-    display.println("Distance ");
-    display.print(distance);
-    display.print(" cm");
-    display.display();
-    //ThingSpeak.setField(1, distance);
-    //ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
-    delay(1000);
-    display.clearDisplay();
-    display.setCursor(0, 0);
-  } else {
-    Serial.println("Nobody Is Infront Of the Sensor");
-  }
-
-  return;
-  }*/
-
-
 
 void pulsesensor() {
   delay(3000);
@@ -745,7 +596,6 @@ void pulsesensor() {
   BPMmeasured = 0;
   totalBPM = 0;
 
-
   return;
 }
 
@@ -754,8 +604,6 @@ void displaymenu(int a) {
   int menuNum = a % 8;
 
   switch (menuNum) {
-
-
     case 0:
       delay(1000);
       display.clearDisplay();
@@ -763,22 +611,6 @@ void displaymenu(int a) {
       display.drawBitmap(0, 0, epd_bitmap_chess_bmp, 128, 64, WHITE);
       display.display();
       break;
-    /*case 1:
-      Serial.println(F(" "));
-
-      Serial.println(F("Entered Mode 1: Temperature Measurement"));
-      Serial.println(F("Please place your forehead infront of the IR sensor and wait a few second."));
-      display.setCursor(0, 0);
-      display.setTextSize(2);
-      display.setTextColor(SSD1306_WHITE);
-      display.println(F("Mode 1:"));
-      display.println(F("Temp "));
-      display.println(F("Measure"));
-      display.display();
-      while (digitalRead(button1) == LOW) {
-        IR_temp();
-      }
-      break;*/
 
     case 1:
       Serial.println(F("Mode 2: Pulse Measurement"));
@@ -809,9 +641,7 @@ void displaymenu(int a) {
       display.println(F("SpO2 "));
       display.println(F("Measure"));
       display.display();
-      //while (digitalRead(button1) == LOW) {
       spo2sensor();
-      //}
 
       break;
 
@@ -827,16 +657,13 @@ void displaymenu(int a) {
       display.println(F("Measure"));
       display.display();
       delay(1000);
-      while (digitalRead(button1) == LOW) {
-        blood_glucose();
-      }
-
+      blood_glucose();
 
       break;
     case 4:
       display.clearDisplay();
       Serial.println(F("Mode 5: Reaction Game"));
-      Serial.println(F("Press button 1 when the LED turns RED"));
+      Serial.println(F("Press button 1 when the LED turns BLUE"));
       display.setCursor(0, 0);
       display.setTextSize(2);
       display.setTextColor(SSD1306_WHITE);
@@ -852,6 +679,7 @@ void displaymenu(int a) {
     case 5:
       display.clearDisplay();
       Serial.println(F("Mode 6: Eye Test"));
+      Serial.println(F("Please place the device about 30cm far from your eye level"));
       Serial.println(F("Press button 1 if you can see the word."));
       Serial.println(F("Press button 2 if you cannot see the word."));
       display.setCursor(0, 0);
@@ -877,23 +705,19 @@ void displaymenu(int a) {
       memorytest();
       break;
 
-      /* Serial.println(F("Mode 5: Reaction Game"));
-        Serial.print(F("Mode 6: Eye Test"));
-        Serial.print(F("Mode 7: Memory game"));
-        Serial.print(F("Mode 8: Battery Level"));
-
-        display.println(F("Mode 5: "));
-        display.println(F("Reaction "));
-        display.println(F("Game "));
-        display.println(F("Mode 6: "));
-        display.println(F("Eye Test "));
-        display.println(F("Mode 7: "));
-        display.println(F("Memory"));
-        display.println(F("Game "));
-        display.println(F("Mode 8: "));
-        display.println(F("Battrty "));
-        display.println(F("Level "));
-      */
+    case 7:
+      display.clearDisplay();
+      Serial.println(F("Mode 8:"));
+      Serial.print(F("Battery "));
+      Serial.print(F("Level"));
+      display.setCursor(0, 0);
+      display.setTextSize(2);
+      display.setTextColor(SSD1306_WHITE);
+      display.println(F("Mode 8: "));
+      display.println(F("Battery level"));
+      display.display();
+      BatteryLevelCheck();
+      break;
   }
   return;
 }
@@ -911,6 +735,7 @@ void printWifiData() {
 }
 
 void spo2sensor() {
+  float spo2now;
   while (digitalRead(53) == LOW) {
     auto sample = sensor.readSample(1000);
     float current_value_red = sample.red;
@@ -989,6 +814,7 @@ void spo2sensor() {
                   Serial.println(average_r);
                   Serial.print("SpO2 (avg, %): ");
                   Serial.println(average_spo2);
+
                 }
               } else {
                 Serial.print("Time (ms): ");
@@ -999,6 +825,7 @@ void spo2sensor() {
                 Serial.println(r);
                 Serial.print("SpO2 (current, %): ");
                 Serial.println(spo2);
+                spo2now = spo2;
               }
             }
 
@@ -1016,55 +843,57 @@ void spo2sensor() {
     }
 
   }
-  ThingSpeak.setField(5, spo2);
-  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+  if (spo2now > 0) {
+    display.clearDisplay();
+    display.setTextSize(2);
+    display.setCursor(0, 0);
+    display.setTextColor(SSD1306_WHITE);
+    display.println(F("Spo2% : "));
+    display.println(spo2now);
+    display.display();
+    ThingSpeak.setField(3, spo2now);
+    ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+  }
 
 
 }
 
 void blood_glucose() {
+  float sendBGL;
   while (digitalRead(button2) == LOW) {
     while (BGLcounter < 10) {
       float gas_sensor_value = analogRead(A7);
-      float Volt = gas_sensor_value * 5.0 / 1024.0;
-      float BGL = (158.12 * Volt) - 359.35;
-      //if (BGL > 45)
-      //{
-      // Serial.println(BGL);
+      float Volt = gas_sensor_value * 5 / 1024.0;
+      float BGL = (158.12 * Volt) - 269.35;
       Serial.println(BGL);
       totalBGL += BGL;
       delay(100);
       BGLcounter++;
     }
-
+    sendBGL = totalBGL / BGLcounter;
     Serial.print("BGL: ");
-    Serial.print(totalBGL / BGLcounter);
+    Serial.print(sendBGL);
     Serial.println("mg/dl");
-
-
+    display.clearDisplay();
+    display.setTextSize(2);
+    display.setCursor(0, 0);
+    display.setTextColor(SSD1306_WHITE);
+    display.println(F("glucose(mg/dl)"));
+    display.println(sendBGL);
+    display.display();
 
     if (BGLcounter == 10) {
       totalBGL = 0;
       BGLcounter = 0;
     }
   }
-  ThingSpeak.setField(5, totalBGL / BGLcounter);
-  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+  if (sendBGL >= 40) {
+
+    ThingSpeak.setField(4, sendBGL);
+    ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+  }
 
   return;
-}
-
-void IR_temp() {
-  while (digitalRead(button2) == LOW) {
-    Serial.println("im in loop");
-    //mlx.AddrSet(0x5A);
-    Serial.print("Ambient = ");
-    Serial.println(mlx.readAmbientTempC());
-    Serial.print("Temp in C: ");
-    Serial.println(mlx.readObjectTempC());
-    delay(250);
-    return;
-  }
 }
 
 void buttonWait(int buttonPin1, int buttonPin2) {
@@ -1169,16 +998,22 @@ void eyetest() {
   display.setTextColor(SSD1306_WHITE);
   display.print(F("Your level of eyes  is "));
   display.print(eyepoint);
-  display.println("/7.");
+  display.println("/ 7.");
   display.display();
+  Serial.print(F("Your level of eyes  is "));
+  Serial.print(eyepoint);
+  Serial.print("/ 7.");
+
+  ThingSpeak.setField(6, eyepoint);
+  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+
   buttonWait(button1, button2);  // wait for button press on pin 2
   display.clearDisplay();
   display.setCursor(0, 0);
   display.print("This is   the end of eye test.");
   display.display();
 
-  ThingSpeak.setField(7, eyepoint);
-  ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+
 
   buttonWait(button1, button2);  // wait for button press on pin 2
 }
@@ -1190,6 +1025,13 @@ void BatteryLevelCheck() {  // need 2k ohm resistor
   delay(1000);
   input_voltage = (analogValue * 5.0) / 1024.0;
   Serial.println(input_voltage);
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setCursor(0, 0);
+  display.setTextColor(SSD1306_WHITE);
+  display.println(F("Battery   Level"));
+  display.println(input_voltage);
+  display.display();
 
   if (input_voltage < 0.50 && input_voltage >= 0.00) {
     Serial.println("10%");
@@ -1346,7 +1188,7 @@ void gamePlay()
   for ( int i = 0; i < NUMBERTOWIN; i++)
   {
     //use floor to round number down to nearest integer and random to choose random numbers from 0 to 3 to put in the gameValues array.
-    gameValues[i] = floor(random(0, 4));
+    gameValues[i] = floor(random(0, 3));
     Serial.println(gameValues[i], DEC);
   }
 
@@ -1378,7 +1220,15 @@ void gamePlay()
             Serial.println("You Win!");
             // you won!
             // set gameState to 2 to run winning fuction
-            ThingSpeak.setField(8, roundNum + 1);
+            display.clearDisplay();
+            display.setTextSize(2);
+            display.setCursor(0, 0);
+            display.setTextColor(SSD1306_WHITE);
+            display.println(F("Memory Level."));
+            display.println(roundNum + 1);
+            display.println(F(" /7 "));
+            display.display();
+            ThingSpeak.setField(7, roundNum + 1);
             ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
             gameState = 2;
 
@@ -1394,8 +1244,16 @@ void gamePlay()
       {
         //incorrect input
         Serial.println("You Lose!");
-        ThingSpeak.setField(8, roundNum);
-            ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
+        display.clearDisplay();
+        display.setTextSize(2);
+        display.setCursor(0, 0);
+        display.setTextColor(SSD1306_WHITE);
+        display.println(F("Memory Level."));
+        display.println(roundNum + 1);
+        display.println(F(" /7 "));
+        display.display();
+        ThingSpeak.setField(7, roundNum);
+        ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
         // you lost :(
         // set gameState to 3 to run losing function
         gameState = 3;
