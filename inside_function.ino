@@ -406,12 +406,10 @@ void setup() {
     Serial.println("pulsesensor not working.");  // This prints one time at Arduino power - up,  or on Arduino reset.
   }
 
-  if (WiFi.status() != WL_CONNECTED)
-  {
+  if (WiFi.status() != WL_CONNECTED)  {
     Serial.print("Attempting to connect to SSID ");
     Serial.println(ssid);
-    while (WiFi.status() != WL_CONNECTED)
-    {
+    while (WiFi.status() != WL_CONNECTED)    {
       WiFi.begin(ssid, pass); // Connect to WPAWPA2 network
 
       delay(5000);
@@ -434,15 +432,11 @@ void setup() {
     while (1);
   }
 
-  for (int Pin = 0; Pin < pinCount; Pin++)
-
-  {
-
+  for (int Pin = 0; Pin < pinCount; Pin++){
     pinMode(ledArray[Pin], OUTPUT);
   }
 
-  for (int Pin = 0; Pin < pinCount; Pin++)
-  {
+  for (int Pin = 0; Pin < pinCount; Pin++)  {
     pinMode(buttonArray[Pin], INPUT_PULLUP);
   }
   randomSeed(analogRead(0));
@@ -595,7 +589,6 @@ void pulsesensor() {
   ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
   BPMmeasured = 0;
   totalBPM = 0;
-
   return;
 }
 
@@ -642,7 +635,6 @@ void displaymenu(int a) {
       display.println(F("Measure"));
       display.display();
       spo2sensor();
-
       break;
 
     case 3:
@@ -658,8 +650,8 @@ void displaymenu(int a) {
       display.display();
       delay(1000);
       blood_glucose();
-
       break;
+      
     case 4:
       display.clearDisplay();
       Serial.println(F("Mode 5: Reaction Game"));
@@ -814,7 +806,6 @@ void spo2sensor() {
                   Serial.println(average_r);
                   Serial.print("SpO2 (avg, %): ");
                   Serial.println(average_spo2);
-
                 }
               } else {
                 Serial.print("Time (ms): ");
@@ -888,7 +879,6 @@ void blood_glucose() {
     }
   }
   if (sendBGL >= 40) {
-
     ThingSpeak.setField(4, sendBGL);
     ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
   }
@@ -1012,9 +1002,6 @@ void eyetest() {
   display.setCursor(0, 0);
   display.print("This is   the end of eye test.");
   display.display();
-
-
-
   buttonWait(button1, button2);  // wait for button press on pin 2
 }
 
@@ -1141,7 +1128,6 @@ void memorytest() {
       //reset gameState to zero to call pre_game
       gameState = 0;
     }
-
   }
 }
 
