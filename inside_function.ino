@@ -546,7 +546,7 @@ long test_reaction() {
   display.setCursor(0, 0);
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
-  display.println("Reaction Time: ");
+  display.println("Reaction  Time: ");
   display.print(finals);
   display.display();
   ThingSpeak.setField(5, finals);
@@ -692,7 +692,7 @@ void displaymenu(int a) {
       display.setTextSize(2);
       display.setTextColor(SSD1306_WHITE);
       display.println(F("Mode 7: "));
-      display.println(F("Memory Test"));
+      display.println(F("Memory    Test"));
       display.display();
       memorytest();
       break;
@@ -706,7 +706,8 @@ void displaymenu(int a) {
       display.setTextSize(2);
       display.setTextColor(SSD1306_WHITE);
       display.println(F("Mode 8: "));
-      display.println(F("Battery level"));
+      display.println(F("Battery"));
+      display.println(F("level"));
       display.display();
       BatteryLevelCheck();
       break;
@@ -1210,9 +1211,9 @@ void gamePlay()
             display.setTextSize(2);
             display.setCursor(0, 0);
             display.setTextColor(SSD1306_WHITE);
-            display.println(F("Memory Level."));
+            display.println(F("Memory    Level."));
             display.println(roundNum + 1);
-            display.println(F(" /7 "));
+            display.print(F(" /7 "));
             display.display();
             ThingSpeak.setField(7, roundNum + 1);
             ThingSpeak.writeFields(PrivateChannelNumber, myWriteAPIKeyPrivate);
